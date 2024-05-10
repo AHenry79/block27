@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function SignUp() {
+function SignUp({ setToken }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
