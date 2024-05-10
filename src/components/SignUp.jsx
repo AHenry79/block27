@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-function SignUp({ setToken }) {
-  const [username, setUsername] = useState("");
+function SignUp({ setToken, username, setUsername }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
@@ -40,6 +39,7 @@ function SignUp({ setToken }) {
             name={"username"}
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Enter username"
+            minLength={"8"}
           />
         </label>
         <label>
@@ -49,6 +49,7 @@ function SignUp({ setToken }) {
             name={"password"}
             placeholder={"Enter password"}
             onChange={(e) => setPassword(e.target.value)}
+            minLength={"8"}
           />
         </label>
         <button>Submit</button>

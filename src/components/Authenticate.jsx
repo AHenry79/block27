@@ -1,5 +1,5 @@
 import { useState } from "react";
-function Authenticate({ token }) {
+function Authenticate({ token, username }) {
   const [successMessage, setSuccessMessage] = useState(null);
   const [error, setError] = useState(null);
 
@@ -25,7 +25,13 @@ function Authenticate({ token }) {
   return (
     <>
       <h2>Authenticate</h2>
-      {successMessage && <p>Success: {successMessage}</p>}
+      {successMessage === "Correctly Authenticated!" ? (
+        <p>
+          Success: {successMessage} Username: {username}
+        </p>
+      ) : (
+        <p></p>
+      )}
       {error && <p>Error: {error}</p>}
       <button onClick={handleClick}>Authenticate Token</button>
     </>
