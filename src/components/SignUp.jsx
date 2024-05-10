@@ -1,10 +1,9 @@
 import { useState } from "react";
 
 function SignUp() {
-  const [form, setForm] = useState({
-    username: "",
-    password: "",
-  });
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
   const submit = async (event) => {
     event.preventDefault();
@@ -17,35 +16,41 @@ function SignUp() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            username: form.username,
-            password: form.password,
+            username: username,
+            password: password,
           }),
         }
       );
       const result = await response.json();
       console.log(result);
     } catch (err) {
-      console.error(err);
+      setError(err.message);
     }
-  };
-
-  const setChange = (event) => {
-    const newObj = { ...form };
-    newObj[event.target.name] = event.target.value;
-    setForm(newObj);
-    console.log(form);
   };
 
   return (
     <>
+      <h2>Sign up!</h2>
+      {error && <p>{err}</p>}
       <form onSubmit={submit}>
-        <input
-          type="text"
-          name={"username"}
-          onChange={setChange}
-          placeholder="Username"
-        />
-        <input type="password" name={"password"} placeholder={"Password"} />
+        <label>
+          Username:
+          <input
+            type="text"
+            name={"username"}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Enter username"
+          />
+        </label>
+        <label>
+          Password:
+          <input
+            type="password"
+            name={"password"}
+            placeholder={"Enter password"}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </label>
         <input type="submit" value={"Submit"} />
       </form>
     </>
