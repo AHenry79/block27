@@ -22,16 +22,16 @@ function SignUp() {
         }
       );
       const result = await response.json();
-      console.log(result);
-    } catch (err) {
-      setError(err.message);
+      setToken(result.token);
+    } catch (error) {
+      setError(error.message);
     }
   };
 
   return (
     <>
       <h2>Sign up!</h2>
-      {error && <p>{err}</p>}
+      {error && <p>{error}</p>}
       <form onSubmit={submit}>
         <label>
           Username:
@@ -51,7 +51,7 @@ function SignUp() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <input type="submit" value={"Submit"} />
+        <button>Submit</button>
       </form>
     </>
   );
